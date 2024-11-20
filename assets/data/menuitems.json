@@ -1,0 +1,246 @@
+[
+    {
+        "id": 1,
+        "name": "Bazooka!",
+        "customizable": true,
+        "description": "Tender, spicy chicken strips paired with mayo, pickles, jalapeños, and signature stacker sauce, all wrapped in a warm tortilla.",
+        "price": "630",
+        "image": "https://cheezious.com/_next/image?url=http%3A%2F%2Fs3-me-south-1.amazonaws.com%2Fcz-content-prod%2Fproducts%2F1726048358599-Bazooka%20400x400.jpg&w=1920&q=75",
+        "category": "Bhook Ka The End!"
+    },
+    {
+        "id": 3,
+        "name": "Cheezy Sticks",
+        "customizable": false,
+        "description": "Freshly Baked Bread Filled With The Yummiest Cheese Blend To Satisfy Your Cravings.",
+        "price": "630.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Cheezy-Sticks.jpeg",
+        "category": "Starters"
+    },
+    {
+        "id": 4,
+        "name": "Oven Baked Wings",
+        "description": "Fresh Oven Baked Wings Served With Dip Sauce",
+        "price": "600.00",
+        "customizable": true,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp8FJdTgKgpIuyyqBQdiGtdWc0Ui6isoONZQ&s",
+        "category": "Starters"
+        
+    },
+    {
+        "id": 5,
+        "name": "Flaming Wings",
+        "description": "Fresh Oven Baked Wings Tossed In Hot Peri Peri Sauce And Served With Dip Sauce",
+        "price": "650.00",
+        "customizable": true,
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Flaming-Wings.png",
+        "category": "Starters"
+        
+    },
+    {
+        "id": 6,
+        "name": "Calzone Chunks",
+        "customizable": false,
+        "description": "4 Pcs Stuffed Calzone Chunks Served with Sauce & Fries",
+        "price": "1150.00",
+        "image": "https://pkgiftshop.com/user_files/product_images/1670528354-lVOlVg.jpeg",
+        "category": "Starters"
+        
+    },
+    {
+        "id": 7,
+        "name": "Arabic Rolls",
+        "customizable": false,
+        "description": "4 Pcs Arabic Rolls Stuffed with Yummiest Mix Served with Sauce",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHWfKRo4koaqiPkgeE1N-e8m6I26oTVR-5fw&s",
+        "category": "Starters"
+        
+    },
+   
+    {
+        "id": 8,
+        "name": "Behari Rolls",
+        "customizable": false,
+        "description": "Nachos Topped With Cheezy Sauce",
+        "price": "690.00",
+        "image": "https://thecheeziousmenu.com/wp-content/uploads/2024/05/behari_rolls-removebg-preview-1.webp",
+        "category": "Starters"
+        
+    },
+
+
+    
+    {
+        "id": 9,
+        "name": "Chicken Tikka",
+        "customizable": true,
+        "description": "Tender Chuncks of Marinated Grilled Chicken with Savory Onion",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzMEwlGn6DBehEj-ZOVALi_J5h5_i2nVsIaQ&s",
+        "category": "Somewhat Local"
+    },
+    {
+        "id": 10,
+        "name": "Chicken Fajita",
+        "customizable": true,
+        "description": " An Authentic Taste of Fajita Marinated Chicken Onion and Bell Peppers.Customizations available",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuAcU79M8t3n90y5byY9-XlUsYrckuWgMqrA&s",
+        "category": "Somewhat Local"
+    },
+    {
+        "id": 11,
+        "name": "Chicken Lover",
+        "customizable": true,
+        "description": "Extream Quantity of Chicken and Onion with Rice Mozarella Cheese",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbmq59aGvNauVzq8MMey1si_Nv8_wJ5beXCA&s",
+        "category": "Somewhat Local"
+    },
+    {
+        "id": 12,
+        "name": "Vegetable Pizza",
+        "customizable": true,
+        "description": "Vegetables, Pizza Sauce And Cheeze",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT-xUvfn1nMutQEX4a1BlPSshWkHgRblLQzQ&s",
+        "category": "Somewhat Local"
+    },
+    {
+        "id": 13,
+        "name": "Chicken Tandoori",
+        "customizable": true,
+        "description": "Our Ttaditionally Developed Tandoori Chicken with Onion, Olives, Jalapenos and Tomato Sauce",
+        "price": "690.00",
+        "image": "https://thecheeziousmenu.com/wp-content/uploads/2024/05/chicken_tandoori-removebg-preview.webp",
+        "category": "Somewhat Local"
+    },
+    {
+        "id": 14,
+        "name": "Hot N Spicy",
+        "customizable": false,
+        "description": "Hot and Spicy Chicken, Onion, Jalapenos",
+        "price": "690.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Hot-and-Spicy.jpeg",
+        "category": "Somewhat Local"
+    },
+    
+
+    {
+        "id": 15,
+        "name": "Black Pepper Tikka",
+        "customizable": true,
+        "description": "A Blend of Marinated Chicken with Black Pepper, Chicken, Onion & Bell Pepper",
+        "price": "690.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Black-Pepper-Tikka.jpeg",
+        "category": "Somewhat Sooper"
+    },
+    {
+        "id": 16,
+        "name": "Sausage Pizza",
+        "customizable": true,
+        "description": "Chicken Sausage, Pizza Sauce, and Cheese",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4_Y97UGJVcTt2h5rBoee6YCNM6pxWiU4ZQ&s",
+        "category": "Somewhat Sooper"
+    },
+    {
+        "id": 17,
+        "name": "Chicken Mushroom",
+        "customizable": true,
+        "description": "Tender Chunks of Marinated Grilled Chicken Tikka, Lots of Mushrooms, Onion and Tomato Sauce",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMRJM4_8ljcbrEap5_2tZ8E_bokvUeY6GQpQ&s",
+        "category": "Somewhat Sooper"
+    },
+    {
+        "id": 18,
+        "name": "Chicken Pepperoni Pizza",
+        "customizable": true,
+        "description": "Chicken Pepperoni, Pizza Sauce and Cheese",
+        "price": "690.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7L98mgu0ymjKWxWllDQnCdgByoX3Cp1DHQ&s",
+        "category": "Somewhat Sooper"
+    },
+    {
+        "id": 19,
+        "name": "Cheezious Special",
+        "customizable": true,
+        "description": "Delicious Special Chicken with Black Olives, Sausages and Bell Pepper",
+        "price": "1550.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Cheezious-Special-Pizza.jpeg",
+        "category": "Cheezy Treats"
+    },
+    {
+        "id": 20,
+        "name": "Chicken Extream",
+        "customizable": true,
+        "description": "Combination Of 3 Flavors of Chicken with Onion Bell Pepper, Green Olives, Mushrooms and Special Sauce",
+        "price": "1550.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Chicken-Extreme.jpeg",
+        "category": "Cheezy Treats"
+    },
+    {
+        "id": 21,
+        "name": "Behari Kebab",
+        "customizable": true,
+        "description": "Enjoy Special Chicken Bihari Kabab, Grilled Chicken with Onion Jalapenos and Ginger Garnishing",
+        "price": "1550.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSydXmkFfHmZ8xe0U2wY5Sw-XTbj-_2PwSDUQ&s",
+        "category": "Cheezy Treats"},
+    {
+        "id": 22,
+        "name": "Crown Crust",
+        "customizable": true,
+        "description": "Royal Crown Crust Cheezious Pizza with A Yummy Blend of Grilled Chicken, Olives, Onion, Capsicum and Special Sauce.",
+        "price": "1550.00",
+        "image": "https://cheeziousmenu.pk/wp-content/uploads/2024/07/ccp-removebg-preview-min.webp",
+        "category": "Special Pizza"
+    },
+    {
+        "id": 23,
+        "name": "Stuff Crust Pizza",
+        "customizable": true,
+        "description": "Special Chicken, Green Olives, Mushroom, Edges Filled With Cheese Or Kabab.",
+        "price": "1550.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtndYJFcxQGdo1GOW7KID09t-5EFcxXftn4Q&s",
+        "category": "Special Pizza"
+    },
+    {
+        "id": 24,
+        "name": "Juice",
+        "customizable": false,
+        "description": " ",
+        "price": "60.00",
+        "image": "https://www.dsmonline.pk/media/catalog/product/cache/e626209f6586797a49e0d0a395e17e33/n/e/nestle_juice_200ml_nesfruta_apple_drink.jpg",
+        "category": "Addons"
+    },
+    {
+        "id": 25,
+        "name": "Mayo Dip",
+        "customizable": false,
+        "description": " ",
+        "price": "80.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSt9pSk5wbQdhf_tqD0WYLCTrw5DBAoPdC2Q&s",
+        "category": "Addons"
+    },
+    {
+        "id": 26,
+        "name": "Soft Drink",
+        "customizable": true,
+        "description": " ",
+        "price": "100.00",
+        "image": "https://thecheeziousmenus.com/wp-content/uploads/2024/08/Soft-Drink.webp",
+        "category": "Addons"
+    },
+    {
+        "id": 27,
+        "name": "Water Bottle",
+        "customizable": false,
+        "description": " ",
+        "price": "60.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Water.jpeg",
+        "category": "Addons"
+    }
+]
