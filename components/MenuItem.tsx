@@ -14,7 +14,7 @@ export interface MenuItem {
 }
 
 export const renderMenuItem = ({ item }: { item: MenuItem }) => (
-  <Link style={styles.menuDiv} href={{ pathname: '/item', params: {image: item.image, title: item.name, price: item.price, description: item.description} }}>
+  <Link style={styles.menuDiv} href={{ pathname: '/item', params: { image: item.image, title: item.name, price: item.price, description: item.description } }}>
     <View style={styles.menuItem}>
       <Image source={{ uri: item.image }} style={styles.itemImage} />
       <View style={styles.itemContent}>
@@ -23,7 +23,7 @@ export const renderMenuItem = ({ item }: { item: MenuItem }) => (
         {item.customizable && (
           <Text style={styles.customization}>Customizations available</Text>
         )}
-        <Text style={styles.itemPrice}>{item.price}</Text>
+        <Text style={[styles.itemPrice, !item.customizable && styles.noCustomizationPrice]}>{item.price}</Text>
         <View style={styles.itemActions}>
           <TouchableOpacity style={styles.addButton}>
             <Text style={styles.addButtonText}>Add</Text>
@@ -53,34 +53,37 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   itemImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
-    marginRight: 16,
+    width: 120,
+    height: 120,
+    borderRadius: 0,
+    marginRight: 14,
   },
   itemContent: {
     flex: 1,
   },
   itemName: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontWeight: '600',
     marginBottom: 4,
   },
   itemDescription: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#666',
-    marginBottom: 4,
+    marginBottom: 8, // Increased from 4 to 8
   },
   customization: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#FFB800',
-    marginBottom: 4,
+    marginBottom: 8, // Increased from 4 to 8
   },
   itemPrice: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFB800',
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#D32F2F',
     marginBottom: 8,
+  },
+  noCustomizationPrice: {
+    marginTop: 16, // Added 2 to 3 lines of space when no customization
   },
   itemActions: {
     flexDirection: 'row',

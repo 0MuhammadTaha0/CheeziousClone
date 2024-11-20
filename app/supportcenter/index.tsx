@@ -6,26 +6,21 @@ import { View, Text, StyleSheet, Image, SafeAreaView, Linking, TouchableOpacity 
 export default function SupportCenterScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* Back Icon */}
       <Link href='../' asChild>
         <TouchableOpacity style={styles.backButton}>
           <ChevronDown size={30} color="#000" />
         </TouchableOpacity>
       </Link>
       
-      {/* Content Section */}
       <View style={styles.content}>
-        {/* Logo */}
         <Image
-          source={require("../../assets/images/cheeziousLogo.png")} // Replace with your logo path
+          source={require("../../assets/images/cheeziousLogo.jpeg")} // Replace with your logo path
           style={styles.logo}
         />
 
-        {/* Support Center Text */}
         <Text style={styles.title}>Support Center</Text>
         <Text style={styles.subtitle}>For queries, please contact us at:</Text>
 
-        {/* Contact Details */}
         <Text
           style={styles.contactEmail}
           onPress={() => Linking.openURL('mailto:support@cheezious.com')}
@@ -34,12 +29,11 @@ export default function SupportCenterScreen() {
         </Text>
         <Text
           style={styles.contactPhone}
-          onPress={() => Linking.openURL('tel:051111446699')}
+          onPress={() => Linking.openURL('tel:+9242111446699')}
         >
-          051111446699
+          +9242111446699
         </Text>
 
-        {/* Privacy Policy */}
         <TouchableOpacity style={styles.privacyPolicyButton}>
           <Text style={styles.privacyPolicyText}>Privacy Policy</Text>
         </TouchableOpacity>
@@ -57,14 +51,14 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 30, // Adjusted for more padding
+    top: 30,
     left: 16,
     borderRadius: 32,
   },
   backArrow: {
     fontSize: 28,
     color: 'black',
-    transform: [{ rotate: '180deg' }], // Rotate to create downward arrow
+    transform: [{ rotate: '180deg' }], 
   },
   content: {
     alignItems: 'center',

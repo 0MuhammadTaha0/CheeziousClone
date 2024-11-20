@@ -113,7 +113,7 @@ const saveUserData = async (newUser: UserData): Promise<void> => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/cheeziousLogo.png')}
+        source={require('../../assets/images/cheeziousLogo.jpeg')}
         style={styles.logo}
       />
       <Text style={styles.title}>{isSignup ? 'Sign Up' : 'Log In'}</Text>

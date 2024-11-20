@@ -4,7 +4,7 @@
         "name": "Bazooka!",
         "customizable": true,
         "description": "Tender, spicy chicken strips paired with mayo, pickles, jalapeños, and signature stacker sauce, all wrapped in a warm tortilla.",
-        "price": "630",
+        "price": "  Rs. 630.00",
         "image": "https://cheezious.com/_next/image?url=http%3A%2F%2Fs3-me-south-1.amazonaws.com%2Fcz-content-prod%2Fproducts%2F1726048358599-Bazooka%20400x400.jpg&w=1920&q=75",
         "category": "Bhook Ka The End!"
     },
@@ -13,15 +13,15 @@
         "name": "Cheezy Sticks",
         "customizable": false,
         "description": "Freshly Baked Bread Filled With The Yummiest Cheese Blend To Satisfy Your Cravings.",
-        "price": "630.00",
+        "price": "  Rs. 630.00",
         "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Cheezy-Sticks.jpeg",
         "category": "Starters"
     },
     {
         "id": 4,
         "name": "Oven Baked Wings",
-        "description": "Fresh Oven Baked Wings Served With Dip Sauce",
-        "price": "600.00",
+        "description": "Fresh Oven Baked Wings Served With Dip Sauce.",
+        "price": "  Rs. 600.00",
         "customizable": true,
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp8FJdTgKgpIuyyqBQdiGtdWc0Ui6isoONZQ&s",
         "category": "Starters"
@@ -30,8 +30,8 @@
     {
         "id": 5,
         "name": "Flaming Wings",
-        "description": "Fresh Oven Baked Wings Tossed In Hot Peri Peri Sauce And Served With Dip Sauce",
-        "price": "650.00",
+        "description": "Fresh Oven Baked Wings Tossed In Hot Peri Peri Sauce And Served With Dip Sauce.",
+        "price": "  Rs. 650.00",
         "customizable": true,
         "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Flaming-Wings.png",
         "category": "Starters"
@@ -41,8 +41,8 @@
         "id": 6,
         "name": "Calzone Chunks",
         "customizable": false,
-        "description": "4 Pcs Stuffed Calzone Chunks Served with Sauce & Fries",
-        "price": "1150.00",
+        "description": "4 Pcs Stuffed Calzone Chunks Served with Sauce & Fries.",
+        "price": "  Rs. 1150.00",
         "image": "https://pkgiftshop.com/user_files/product_images/1670528354-lVOlVg.jpeg",
         "category": "Starters"
         
@@ -51,8 +51,8 @@
         "id": 7,
         "name": "Arabic Rolls",
         "customizable": false,
-        "description": "4 Pcs Arabic Rolls Stuffed with Yummiest Mix Served with Sauce",
-        "price": "690.00",
+        "description": "4 Pcs Arabic Rolls Stuffed with Yummiest Mix Served with Sauce.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHWfKRo4koaqiPkgeE1N-e8m6I26oTVR-5fw&s",
         "category": "Starters"
         
@@ -62,8 +62,8 @@
         "id": 8,
         "name": "Behari Rolls",
         "customizable": false,
-        "description": "Nachos Topped With Cheezy Sauce",
-        "price": "690.00",
+        "description": "Nachos Topped With Cheezy Sauce.",
+        "price": "  Rs. 690.00",
         "image": "https://thecheeziousmenu.com/wp-content/uploads/2024/05/behari_rolls-removebg-preview-1.webp",
         "category": "Starters"
         
@@ -75,8 +75,8 @@
         "id": 9,
         "name": "Chicken Tikka",
         "customizable": true,
-        "description": "Tender Chuncks of Marinated Grilled Chicken with Savory Onion",
-        "price": "690.00",
+        "description": "Tender Chuncks of Marinated Grilled Chicken with Savory Onion.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzMEwlGn6DBehEj-ZOVALi_J5h5_i2nVsIaQ&s",
         "category": "Somewhat Local"
     },
@@ -84,8 +84,8 @@
         "id": 10,
         "name": "Chicken Fajita",
         "customizable": true,
-        "description": " An Authentic Taste of Fajita Marinated Chicken Onion and Bell Peppers.Customizations available",
-        "price": "690.00",
+        "description": "An Authentic Taste of Fajita Marinated Chicken Onion and Bell Peppers.Customizations available.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuAcU79M8t3n90y5byY9-XlUsYrckuWgMqrA&s",
         "category": "Somewhat Local"
     },
@@ -93,8 +93,8 @@
         "id": 11,
         "name": "Chicken Lover",
         "customizable": true,
-        "description": "Extream Quantity of Chicken and Onion with Rice Mozarella Cheese",
-        "price": "690.00",
+        "description": "Extream Quantity of Chicken and Onion with Rice Mozarella Cheese.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbmq59aGvNauVzq8MMey1si_Nv8_wJ5beXCA&s",
         "category": "Somewhat Local"
     },
@@ -102,8 +102,8 @@
         "id": 12,
         "name": "Vegetable Pizza",
         "customizable": true,
-        "description": "Vegetables, Pizza Sauce And Cheeze",
-        "price": "690.00",
+        "description": "Vegetables, Pizza Sauce And Cheeze.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT-xUvfn1nMutQEX4a1BlPSshWkHgRblLQzQ&s",
         "category": "Somewhat Local"
     },
@@ -111,8 +111,8 @@
         "id": 13,
         "name": "Chicken Tandoori",
         "customizable": true,
-        "description": "Our Ttaditionally Developed Tandoori Chicken with Onion, Olives, Jalapenos and Tomato Sauce",
-        "price": "690.00",
+        "description": "Our Ttaditionally Developed Tandoori Chicken with Onion, Olives, Jalapenos and Tomato Sauce.",
+        "price": "  Rs. 690.00",
         "image": "https://thecheeziousmenu.com/wp-content/uploads/2024/05/chicken_tandoori-removebg-preview.webp",
         "category": "Somewhat Local"
     },
@@ -120,8 +120,8 @@
         "id": 14,
         "name": "Hot N Spicy",
         "customizable": false,
-        "description": "Hot and Spicy Chicken, Onion, Jalapenos",
-        "price": "690.00",
+        "description": "Hot and Spicy Chicken, Onion, Jalapenos.",
+        "price": "  Rs. 690.00",
         "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Hot-and-Spicy.jpeg",
         "category": "Somewhat Local"
     },
@@ -131,8 +131,8 @@
         "id": 15,
         "name": "Black Pepper Tikka",
         "customizable": true,
-        "description": "A Blend of Marinated Chicken with Black Pepper, Chicken, Onion & Bell Pepper",
-        "price": "690.00",
+        "description": "A Blend of Marinated Chicken with Black Pepper, Chicken, Onion & Bell Pepper.",
+        "price": "  Rs. 690.00",
         "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Black-Pepper-Tikka.jpeg",
         "category": "Somewhat Sooper"
     },
@@ -140,8 +140,8 @@
         "id": 16,
         "name": "Sausage Pizza",
         "customizable": true,
-        "description": "Chicken Sausage, Pizza Sauce, and Cheese",
-        "price": "690.00",
+        "description": "Chicken Sausage, Pizza Sauce, and Cheese.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4_Y97UGJVcTt2h5rBoee6YCNM6pxWiU4ZQ&s",
         "category": "Somewhat Sooper"
     },
@@ -149,8 +149,8 @@
         "id": 17,
         "name": "Chicken Mushroom",
         "customizable": true,
-        "description": "Tender Chunks of Marinated Grilled Chicken Tikka, Lots of Mushrooms, Onion and Tomato Sauce",
-        "price": "690.00",
+        "description": "Tender Chunks of Marinated Grilled Chicken Tikka, Lots of Mushrooms, Onion and Tomato Sauce.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMRJM4_8ljcbrEap5_2tZ8E_bokvUeY6GQpQ&s",
         "category": "Somewhat Sooper"
     },
@@ -158,8 +158,8 @@
         "id": 18,
         "name": "Chicken Pepperoni Pizza",
         "customizable": true,
-        "description": "Chicken Pepperoni, Pizza Sauce and Cheese",
-        "price": "690.00",
+        "description": "Chicken Pepperoni, Pizza Sauce and Cheese.",
+        "price": "  Rs. 690.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7L98mgu0ymjKWxWllDQnCdgByoX3Cp1DHQ&s",
         "category": "Somewhat Sooper"
     },
@@ -167,8 +167,8 @@
         "id": 19,
         "name": "Cheezious Special",
         "customizable": true,
-        "description": "Delicious Special Chicken with Black Olives, Sausages and Bell Pepper",
-        "price": "1550.00",
+        "description": "Delicious Special Chicken with Black Olives, Sausages and Bell Pepper.",
+        "price": " Rs. 1550.00",
         "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Cheezious-Special-Pizza.jpeg",
         "category": "Cheezy Treats"
     },
@@ -176,8 +176,8 @@
         "id": 20,
         "name": "Chicken Extream",
         "customizable": true,
-        "description": "Combination Of 3 Flavors of Chicken with Onion Bell Pepper, Green Olives, Mushrooms and Special Sauce",
-        "price": "1550.00",
+        "description": "Combination Of 3 Flavors of Chicken with Onion Bell Pepper, Green Olives, Mushrooms and Special Sauce.",
+        "price": " Rs. 1550.00",
         "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Chicken-Extreme.jpeg",
         "category": "Cheezy Treats"
     },
@@ -185,61 +185,235 @@
         "id": 21,
         "name": "Behari Kebab",
         "customizable": true,
-        "description": "Enjoy Special Chicken Bihari Kabab, Grilled Chicken with Onion Jalapenos and Ginger Garnishing",
-        "price": "1550.00",
+        "description": "Enjoy Special Chicken Bihari Kabab, Grilled Chicken with Onion Jalapenos and Ginger Garnishing.",
+        "price": " Rs. 1550.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSydXmkFfHmZ8xe0U2wY5Sw-XTbj-_2PwSDUQ&s",
-        "category": "Cheezy Treats"},
+        "category": "Cheezy Treats"
+    },
+
+    {
+        "id": 21,
+        "name": "Small Pizza Deal",
+        "customizable": true,
+        "description": "Any Flavor From Local Love Or Over the Sea Flavor Category & 1 Soft Drink.",
+        "price": "  Rs. 750.00",
+        "image": "https://cheeziousmenu.com/wp-content/uploads/2024/06/Cheezious-Small-Pizza-Deal-768x768.jpg",
+        "category": "Pizza Deals"
+    },
     {
         "id": 22,
+        "name": "Large Pizza Deal",
+        "customizable": true,
+        "description": "Any Flavor From Local Love Or Over the Sea Flavor Category & 1 Liter Soft Drink.",
+        "price": "  Rs. 1990.00",
+        "image": "https://cheeziousmenue.pk/wp-content/uploads/2024/05/1-4.webp",
+        "category": "Pizza Deals"
+    },
+    {
+        "id": 23,
+        "name": "Regular Pizza Deal",
+        "customizable": true,
+        "description": "1 Regular Pizza and 2 Regular Drinks.",
+        "price": "  Rs. 1990.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUfdx7rhOZae7_hpo-zO1UPwGg2WvMpxlXgg&s",
+        "category": "Pizza Deals"
+    },
+    {
+        "id": 24,
+        "name": "Special Roasted Platter",
+        "description": "4 Pcs Behari Rolls, 6pcs Wings Served with Fries & Sauce.",
+        "price": "  Rs. 1200.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Special-Roasted-Platter.jpeg",
+        "category": "Sandwiches & Platters"
+    },
+    {
+        "id": 25,
+        "name": "Classic Roll Platter",
+        "description": "4Pcs Behari Rolls, 4pcs Arabic Rolls Served with Fries & Sauce.",
+        "price": "  Rs. 1200.00",
+        "image": "https://thecheeziousmenu.com/wp-content/uploads/2024/07/classic-roll-platter-1.webp",
+        "category": "Sandwiches & Platters"
+    },
+    {
+        "id": 26,
+        "name": "Euro Sandwich",
+        "description": "Mozzarella Dipped Black Pepper ChickenTopped with Garlic Sauce, Pineapples and Tomato's Served in Baked Bread.",
+        "price": "  Rs. 920.00",
+        "image": "https://thecheeziousmenus.com/wp-content/uploads/2024/08/Euro-Sandwich.webp",
+        "category": "Sandwiches & Platters"
+    },
+    {
+        "id": 27,
+        "name": "Mexican Sandwich",
+        "description": "Mozzarella Dipped Chicken Topped with Garlic Sauce, Tomato's Served in Baked Bread.",
+        "price": "  Rs. 920.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWBg8RONXEllW8L8PEGlft6uq-L1JnyzVBiQ&s",
+        "category": "Sandwiches & Platters"
+    },
+    {
+        "id": 28,
+        "name": "Pizza Stacker",
+        "description": "A Unique Blend of Delicious Sauce, Cripsy Chicken and Pizza Crust.",
+        "price": "  Rs. 920.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoP5mVR5Kp-yAK4OlRwLEZ9einrTxeYQElEw&s",
+        "category": "Sandwiches & Platters"
+    },
+
+    {
+        "id": 29,
         "name": "Crown Crust",
         "customizable": true,
         "description": "Royal Crown Crust Cheezious Pizza with A Yummy Blend of Grilled Chicken, Olives, Onion, Capsicum and Special Sauce.",
-        "price": "1550.00",
+        "price": "  Rs. 1550.00",
         "image": "https://cheeziousmenu.pk/wp-content/uploads/2024/07/ccp-removebg-preview-min.webp",
         "category": "Special Pizza"
     },
     {
-        "id": 23,
+        "id": 30,
         "name": "Stuff Crust Pizza",
         "customizable": true,
         "description": "Special Chicken, Green Olives, Mushroom, Edges Filled With Cheese Or Kabab.",
-        "price": "1550.00",
+        "price": "  Rs. 1550.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtndYJFcxQGdo1GOW7KID09t-5EFcxXftn4Q&s",
         "category": "Special Pizza"
     },
     {
-        "id": 24,
+        "id": 31,
+        "name": "Somewhat Amazing 4",
+        "customizable": true,
+        "description": "3 Bazinga, 3 Chicken Pieces, 1 Liter Drink.",
+        "price": "  Rs. 2150.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZl5La-L1d2e9v-jolQ4Kl6ItbswpE0MtxiQ&s",
+        "category": "Somewhat Amazing"
+    },
+    {
+        "id": 32,
+        "name": "Somewhat Amazing 3",
+        "customizable": true,
+        "description": "3 Bazinga Burger, Large Fries, 1 Liter Drink.",
+        "price": "  Rs. 1890.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp_Unp-KRTh5mJb99l2CAGPCpB_XJj6pVcdw&s",
+        "category": "Somewhat Amazing"
+    },
+    {
+        "id": 33,
+        "name": "Somewhat Amazing 2",
+        "customizable": true,
+        "description": "2 Bazinga Burger, 2 Pcs Chicken, Large Fries, 2 Regular Drink.",
+        "price": "  Rs. 1750.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRicMt58DALk6XvVKW-Jn7WvZvPRmnJcFK5vQ&s",
+        "category": "Somewhat Amazing"
+    },
+    {
+        "id": 34,
+        "name": "Somewhat Amazing 1",
+        "customizable": true,
+        "description": "2 Bazinga, Regular Fries, 2 Regular Drink.",
+        "price": "  Rs. 1250.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI6TxsJ2q8yN6p6btlVpLUfJstViXArEtPkg&s",
+        "category": "Somewhat Amazing"
+    },
+    {
+        "id": 35,
+        "name": "Fettuccine Alfredo",
+        "description": "Fettuccine pasta tossed in creamy white sauce with mushrooms and chicken chunks.",
+        "price": "  Rs. 1050.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0p_IaQYaZCKUBo_bxM5cI0czxrBYXWn1Bhw&s",
+        "category": "Pastas"
+    },
+    {
+        "id": 36,
+        "name": "Crunchy Chicken Pasta",
+        "description": "Yummiest Macaroni Pasta in White Sauce Topped with Crispy Chicken & Cheese.",
+        "price": "  Rs. 950.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzPYNcccAo7RH7kuiMWO9a2vqMuhpFEHEOsQ&s",
+        "category": "Pastas"
+    },
+    {
+        "id": 37,
+        "name": "Bazooka!",
+        "customizable": true,
+        "description": "Tender, spicy chicken strips paired with mayo, pickles, jalapeños, and signature stacker sauce, all wrapped in a warm tortilla.",
+        "price": "  Rs. 630.00",
+        "image": "https://cheezious.com/_next/image?url=http%3A%2F%2Fs3-me-south-1.amazonaws.com%2Fcz-content-prod%2Fproducts%2F1726048358599-Bazooka%20400x400.jpg&w=1920&q=75",
+        "category": "Burgers"
+    },
+    {
+        "id": 38,
+        "name": "Reggy Burger",
+        "customizable": true,
+        "description": "Perfectly Fried Chicken Patty With Fresh Lettuce and Sauce in a Sesame Seed Bun.",
+        "price": "  Rs. 390.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReRFAPIs6nIclKoHrSqgDITmAPoxuuIke7wQ&s",
+        "category": "Burgers"
+    },
+    {
+        "id": 39,
+        "name": "Bazinga Burger",
+        "customizable": true,
+        "description": "Crispy Fried To Perfection Boneless Thigh with Signature Sauce and Lettuce Held in Corn Dusted Bun.",
+        "price": "  Rs. 560.00",
+        "image": "https://pkgiftshop.com/user_files/product_images/1677345331-jpnbSW.webp",
+        "category": "Burgers"
+    },
+
+    {
+        "id": 40,
+        "name": "Chicken Pieces",
+        "customizable": true,
+        "description": "Cripsy Chicken.",
+        "price": " from Rs. 300.00",
+        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Chicken-Piece.jpeg",
+        "category": "Side Orders"
+    },
+    {
+        "id": 41,
+        "name": "Nuggets",
+        "customizable": true,
+        "description": "5 Pcs.",
+        "price": "  Rs. 450.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU4Petuxc7NkJ_Bl-tNZGCPtD9R2pbzYUiVw&s",
+        "category": "Side Orders"
+    },
+
+    {
+        "id": 42,
+        "name": "Fries",
+        "customizable": true,
+        "price": "  Rs. 220.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReRl3bZpZnJaA8hiqriXkH_D0AvBgxZElq2Q&s",
+        "category": "Side Orders"
+    },
+
+    {
+        "id": 43,
         "name": "Juice",
-        "customizable": false,
         "description": " ",
-        "price": "60.00",
+        "price": "  Rs. 60.00",
         "image": "https://www.dsmonline.pk/media/catalog/product/cache/e626209f6586797a49e0d0a395e17e33/n/e/nestle_juice_200ml_nesfruta_apple_drink.jpg",
         "category": "Addons"
     },
     {
-        "id": 25,
+        "id": 44,
         "name": "Mayo Dip",
-        "customizable": false,
         "description": " ",
-        "price": "80.00",
+        "price": "  Rs. 80.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSt9pSk5wbQdhf_tqD0WYLCTrw5DBAoPdC2Q&s",
         "category": "Addons"
     },
     {
-        "id": 26,
+        "id": 45,
         "name": "Soft Drink",
-        "customizable": true,
         "description": " ",
-        "price": "100.00",
+        "price": "  Rs. 100.00",
         "image": "https://thecheeziousmenus.com/wp-content/uploads/2024/08/Soft-Drink.webp",
         "category": "Addons"
     },
     {
-        "id": 27,
+        "id": 46,
         "name": "Water Bottle",
-        "customizable": false,
         "description": " ",
-        "price": "60.00",
+        "price": "  Rs. 60.00",
         "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Water.jpeg",
         "category": "Addons"
     }

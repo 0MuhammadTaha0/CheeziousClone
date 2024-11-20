@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, usePathname } from 'expo-router';
 import { View, Text, StyleSheet, Dimensions, Image, FlatList, TouchableOpacity, TouchableHighlight, SafeAreaView, StatusBar } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
@@ -13,7 +13,7 @@ const { width } = Dimensions.get('window');
 
 const CategoryScene = ({ route }: { route: { key: string } }) => (
   <FlatList
-    data={menuItems.filter(item => item.category === route.key)}
+    data={menuItems.filter(item => item.category === route.key).map(item => ({ ...item, description: item.description || '' }))}
     renderItem={renderMenuItem}
     keyExtractor={item => item.id.toString()}
     contentContainerStyle={styles.menuList}
@@ -28,7 +28,13 @@ export default function MenuScreen() {
     { key: 'Somewhat Local', title: 'Somewhat Local' },
     { key: 'Somewhat Sooper', title: 'Somewhat Sooper' },
     { key: 'Cheezy Treats', title: 'Cheezy Treats' },
+    { key: 'Pizza Deals', title: 'Pizza Deals' },
+    { key: 'Sandwiches & Platters', title: 'Sandwiches & Platters' },
     { key: 'Special Pizza', title: 'Special Pizza' },
+    { key: 'Somewhat Amazing', title: 'Somewhat Amazing' },
+    { key: 'Pastas', title: 'Pastas' },
+    { key: 'Burgers', title: 'Burgers' },
+    { key: 'Side Orders', title: 'Side Orders' },
     { key: 'Addons', title: 'Addons' },
   ]);
 
@@ -38,7 +44,13 @@ export default function MenuScreen() {
     'Somewhat Local': CategoryScene,
     'Somewhat Sooper': CategoryScene,
     'Cheezy Treats': CategoryScene,
+    'Pizza Deals': CategoryScene,
+    'Sandwiches & Platters': CategoryScene,
     'Special Pizza': CategoryScene,
+    'Somewhat Amazing': CategoryScene,
+    'Pastas': CategoryScene,
+    'Burgers': CategoryScene,
+    'Side Orders': CategoryScene,
     'Addons': CategoryScene,
   });
 

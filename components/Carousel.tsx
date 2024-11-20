@@ -9,8 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const { width } = Dimensions.get('window'); // Full screen width
-const IMAGE_HEIGHT = 200; // Adjust height based on your design
+const { width, height } = Dimensions.get('window'); // Full screen width and height
 
 interface CarouselProps {
   data: { url: string }[];
@@ -60,11 +59,13 @@ const Carousel: React.FC<CarouselProps> = ({ data, autoplayInterval = 3000 }) =>
         )}
         onMomentumScrollEnd={handleManualSwipe}
         renderItem={({ item }) => (
-          <Image
-            source={{ uri: item.url }}
-            style={styles.image}
-            resizeMode="cover"
-          />
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: item.url }}
+              style={styles.image}
+              resizeMode="cover" // Use "cover" for better fitting
+            />
+          </View>
         )}
       />
 
@@ -95,17 +96,24 @@ const Carousel: React.FC<CarouselProps> = ({ data, autoplayInterval = 3000 }) =>
 
 const styles = StyleSheet.create({
   container: {
-    height: IMAGE_HEIGHT + 20, // Carousel height with some padding
+    width: '100%',
+    position: 'relative',
+  },
+  imageContainer: {
+    width: width,
+    height: height * 0.3, // 30% of the screen height
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
-    width: width,
-    height: IMAGE_HEIGHT,
+    width: '100%',
+    height: '100%',
   },
   dotContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 1,
+    bottom: 10, // Adjust the position of the dots from the bottom
     width: '100%',
   },
   dot: {

@@ -16,7 +16,7 @@ const SplashScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/images/cheeziousLogo.png')} style={styles.logo} />
+      <Image source={require('../assets/images/cheeziousLogo.jpeg')} style={styles.logo} />
       <ActivityIndicator size="large" color="#ffffff" style={styles.loader} />
     </View>
   );
