@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as FileSystem from 'expo-file-system';
+import * as ImagePicker from 'expo-image-picker';
 
 interface UserData {
   name: string;
@@ -9,7 +10,9 @@ interface UserData {
   phone: string;
   address: string;
   password: string;
+  profileImage?: string | null; // Allow null or undefined
 }
+
 
 const SignupLoginScreen: React.FC = () => {
   const [isSignup, setIsSignup] = useState<boolean>(true);
@@ -20,6 +23,7 @@ const SignupLoginScreen: React.FC = () => {
     address: '',
     password: '',
   });
+  const [imageUri, setImageUri] = useState<string | null>(null); // State to store image URI
   const router = useRouter();
 
   const filePath = FileSystem.documentDirectory + 'userData.json';
@@ -34,45 +38,40 @@ const SignupLoginScreen: React.FC = () => {
     initializeUserDataFile();
   }, []);
 
- // const filePath = FileSystem.documentDirectory + 'userData.json';
-
-// Function to load user data
-const loadUserData = async (): Promise<UserData[]> => {
-  try {
-    const fileExists = await FileSystem.getInfoAsync(filePath);
-
-    if (fileExists.exists) {
-      const fileContent = await FileSystem.readAsStringAsync(filePath);
-      const parsedData = JSON.parse(fileContent);
-      if (Array.isArray(parsedData)) {
-        return parsedData; // Return the valid array
+  const loadUserData = async (): Promise<UserData[]> => {
+    try {
+      const fileExists = await FileSystem.getInfoAsync(filePath);
+      if (fileExists.exists) {
+        const fileContent = await FileSystem.readAsStringAsync(filePath);
+        const parsedData = JSON.parse(fileContent);
+        if (Array.isArray(parsedData)) {
+          return parsedData;
+        } else {
+          console.warn('Invalid file content, resetting to empty array.');
+          return [];
+        }
       } else {
-        console.warn('Invalid file content, resetting to empty array.');
+        console.warn('File does not exist, initializing empty data.');
         return [];
       }
-    } else {
-      console.warn('File does not exist, initializing empty data.');
+    } catch (error) {
+      console.error('Error loading user data:', error);
       return [];
     }
-  } catch (error) {
-    console.error('Error loading user data:', error);
-    return []; // Default to empty array if any error occurs
-  }
-};
+  };
 
-// Function to save user data
-const saveUserData = async (newUser: UserData): Promise<void> => {
-  try {
-    const existingUsers = await loadUserData();
-    const updatedUsers = [...existingUsers, newUser]; // Spread operator assumes an array
-    await FileSystem.writeAsStringAsync(filePath, JSON.stringify(updatedUsers, null, 2));
-    console.log('User data saved successfully:', updatedUsers);
-  } catch (error) {
-    console.error('Error saving user data:', error);
-    throw new Error('Failed to save user data.'); // Re-throw error for alert
-  }
-};
-
+  const saveUserData = async (newUser: UserData): Promise<void> => {
+    try {
+      const existingUsers = await loadUserData(); // Load existing data
+      const updatedUsers = [...existingUsers, newUser]; // Add new user
+      await FileSystem.writeAsStringAsync(filePath, JSON.stringify(updatedUsers, null, 2));
+      console.log('User data saved successfully:', updatedUsers);
+    } catch (error) {
+      console.error('Error saving user data:', error);
+      throw new Error('Failed to save user data.'); // Ensure error is logged and thrown
+    }
+  };
+  
 
   const handleInputChange = (field: keyof UserData, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -80,16 +79,13 @@ const saveUserData = async (newUser: UserData): Promise<void> => {
 
   const handleSignup = async () => {
     try {
-      const newUser = { ...formData };
+      const newUser = { ...formData, profileImage: imageUri };
       await saveUserData(newUser);
-      Alert.alert('Success', 'Account created!');
-      router.push('../../MainMenu'); // Redirect to the main menu
+      router.push('../../MainMenu');
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
-      Alert.alert('Error', errorMessage);
+      console.error('Error during signup:', error);
     }
   };
-  
 
   const handleLogin = async () => {
     try {
@@ -99,21 +95,37 @@ const saveUserData = async (newUser: UserData): Promise<void> => {
       );
 
       if (matchedUser) {
-        Alert.alert('Success', 'Login successful!');
         router.push('../../MainMenu');
       } else {
-        Alert.alert('Error', 'Invalid email or password.');
+        console.error('Invalid email or password.');
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to load user data.';
-      Alert.alert('Error', errorMessage);
+      console.error('Error during login:', error);
     }
   };
+
+  // Function to pick image
+  const pickImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        quality: 1,
+      });
+  
+      if (!result.canceled) { // Updated property name
+        setImageUri(result.assets[0].uri); // Access `uri` from `assets`
+      }
+    } catch (error) {
+      console.error('Error picking an image:', error);
+    }
+  };
+  
 
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/cheeziousLogo.jpeg')}
+        source={require('../../assets/images/cheeziousLogo.png')}
         style={styles.logo}
       />
       <Text style={styles.title}>{isSignup ? 'Sign Up' : 'Log In'}</Text>
@@ -138,6 +150,9 @@ const saveUserData = async (newUser: UserData): Promise<void> => {
             placeholderTextColor="#4A4A4A"
             onChangeText={(value) => handleInputChange('address', value)}
           />
+          {/* Image picker button */}
+          <Button title="Pick Profile Image (Optional)" onPress={pickImage} />
+          {imageUri && <Image source={{ uri: imageUri }} style={styles.profileImage} />}
         </>
       )}
       <TextInput
@@ -174,7 +189,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
     backgroundColor: '#FFD700',
-    paddingBottom:130,
+    paddingBottom: 130,
   },
   logo: {
     width: 100,
@@ -202,6 +217,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#007BFF',
     marginTop: 15,
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    resizeMode: 'cover',
+    marginTop: 15,
+    alignSelf: 'center',
   },
 });
 
