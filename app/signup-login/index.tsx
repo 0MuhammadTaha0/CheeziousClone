@@ -10,7 +10,7 @@ interface UserData {
   phone: string;
   address: string;
   password: string;
-  profileImage?: string | null; // Allow null or undefined
+  profileImage?: string | null; 
 }
 
 
@@ -23,7 +23,7 @@ const SignupLoginScreen: React.FC = () => {
     address: '',
     password: '',
   });
-  const [imageUri, setImageUri] = useState<string | null>(null); // State to store image URI
+  const [imageUri, setImageUri] = useState<string | null>(null); 
   const router = useRouter();
 
   const filePath = FileSystem.documentDirectory + 'userData.json';
@@ -62,13 +62,13 @@ const SignupLoginScreen: React.FC = () => {
 
   const saveUserData = async (newUser: UserData): Promise<void> => {
     try {
-      const existingUsers = await loadUserData(); // Load existing data
-      const updatedUsers = [...existingUsers, newUser]; // Add new user
+      const existingUsers = await loadUserData(); 
+      const updatedUsers = [...existingUsers, newUser]; 
       await FileSystem.writeAsStringAsync(filePath, JSON.stringify(updatedUsers, null, 2));
       console.log('User data saved successfully:', updatedUsers);
     } catch (error) {
       console.error('Error saving user data:', error);
-      throw new Error('Failed to save user data.'); // Ensure error is logged and thrown
+      throw new Error('Failed to save user data.'); 
     }
   };
   
@@ -104,7 +104,7 @@ const SignupLoginScreen: React.FC = () => {
     }
   };
 
-  // Function to pick image
+  
   const pickImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -113,8 +113,8 @@ const SignupLoginScreen: React.FC = () => {
         quality: 1,
       });
   
-      if (!result.canceled) { // Updated property name
-        setImageUri(result.assets[0].uri); // Access `uri` from `assets`
+      if (!result.canceled) { 
+        setImageUri(result.assets[0].uri); 
       }
     } catch (error) {
       console.error('Error picking an image:', error);
@@ -150,7 +150,7 @@ const SignupLoginScreen: React.FC = () => {
             placeholderTextColor="#4A4A4A"
             onChangeText={(value) => handleInputChange('address', value)}
           />
-          {/* Image picker button */}
+          
           <Button title="Pick Profile Image (Optional)" onPress={pickImage} />
           {imageUri && <Image source={{ uri: imageUri }} style={styles.profileImage} />}
         </>

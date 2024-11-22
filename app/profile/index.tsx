@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'expo-router';
+import React, { useState, useEffect } from 'react';
+import { Link, useRouter } from 'expo-router';
 import {
   View,
   Text,
@@ -8,7 +8,9 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  Alert,
 } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 import {
   ChevronDown,
   ChevronRight,
@@ -30,58 +32,83 @@ type MenuItemProps = {
   danger?: boolean;
 };
 
+interface UserData {
+  profileImage?: string;
+  name: string;
+  phone: string;
+}
+
+const filePath = FileSystem.documentDirectory + 'userData.json';
+
 const MenuItem = ({ icon, title, rightText, onPress, danger }: MenuItemProps) => (
-  <TouchableOpacity
-    style={styles.menuItem}
-    onPress={onPress}
-  >
+  <TouchableOpacity style={styles.menuItem} onPress={onPress}>
     <View style={styles.menuItemLeft}>
       {icon}
       <Text style={[styles.menuItemText, danger && styles.dangerText]}>{title}</Text>
     </View>
     <View style={styles.menuItemRight}>
-      {rightText && (
-        <Text style={styles.rightText}>{rightText}</Text>
-      )}
+      {rightText && <Text style={styles.rightText}>{rightText}</Text>}
       <ChevronRight size={20} color="#666" />
     </View>
   </TouchableOpacity>
 );
 
 export default function ProfileScreen() {
+  const [profile, setProfile] = useState<UserData | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const fileExists = await FileSystem.getInfoAsync(filePath);
+        if (fileExists.exists) {
+          const fileContent = await FileSystem.readAsStringAsync(filePath);
+          const users = JSON.parse(fileContent);
+          if (Array.isArray(users) && users.length > 0) {
+            setProfile(users[users.length - 1]);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch profile data:', error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
+
+  const handleLogout = () => {
+    router.replace('../../signup-login'); 
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
           <View style={styles.profileSection}>
             <Image
-              source={{ uri: 'https://via.placeholder.com/100' }}
+              source={{
+                uri: profile?.profileImage || 'https://via.placeholder.com/100',
+              }}
               style={styles.profileImage}
             />
             <View style={styles.profileInfo}>
-              <Text style={styles.name}>Muhammad Zaeem</Text>
+              <Text style={styles.name}>{profile?.name || 'Guest'}</Text>
               <View style={styles.phoneContainer}>
-                <Text style={styles.phone}>+92335454510</Text>
+                <Text style={styles.phone}>{profile?.phone || 'No phone number'}</Text>
                 <TouchableOpacity>
                   <Edit2 size={16} color="#D32F2F" />
                 </TouchableOpacity>
               </View>
             </View>
           </View>
-          <Link href='../' asChild>
-            <TouchableOpacity>
-              <ChevronDown size={30} color="#000" />
-            </TouchableOpacity>
-          </Link>
+          <TouchableOpacity>
+            <ChevronDown size={30} color="#000" />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Personal</Text>
-          <MenuItem
-            icon={<List size={24} color="#666" />}
-            title="My Orders"
-            onPress={() => {}}
-          />
+          <MenuItem icon={<List size={24} color="#666" />} title="My Orders" onPress={() => {}} />
           <MenuItem
             icon={<Home size={24} color="#666" />}
             title="My Addresses"
@@ -109,7 +136,7 @@ export default function ProfileScreen() {
           <MenuItem
             icon={<LogOut size={24} color="#666" />}
             title="Logout"
-            onPress={() => {}}
+            onPress={handleLogout}
           />
           <MenuItem
             icon={<Trash2 size={24} color="#D32F2F" />}
@@ -124,20 +151,6 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  
-  backButton: {
-    position: 'absolute',
-    top: 30, // Adjusted for more padding
-    left: 16,
-    padding: 16, // Increased size for better usability
-    backgroundColor: '#f0f0f0',
-    borderRadius: 32,
-  },
-  backArrow: {
-    fontSize: 28,
-    color: 'black',
-    transform: [{ rotate: '180deg' }], // Rotate to create downward arrow
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
