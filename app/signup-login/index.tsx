@@ -81,7 +81,7 @@ const SignupLoginScreen: React.FC = () => {
     try {
       const newUser = { ...formData, profileImage: imageUri };
       await saveUserData(newUser);
-      router.push('../../MainMenu');
+      router.push('../../mainmenu');
     } catch (error) {
       console.error('Error during signup:', error);
     }
@@ -95,7 +95,7 @@ const SignupLoginScreen: React.FC = () => {
       );
 
       if (matchedUser) {
-        router.push('../../MainMenu');
+        router.push('../../mainmenu');
       } else {
         console.error('Invalid email or password.');
       }

@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
-import { Link, usePathname } from 'expo-router';
-import { View, Text, StyleSheet, Dimensions, Image, FlatList, TouchableOpacity, TouchableHighlight, SafeAreaView, StatusBar } from 'react-native';
+import { Link, Stack, useRouter } from 'expo-router';
+import { View, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity, SafeAreaView, StatusBar, ScrollView, Image, Pressable } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Ionicons } from '@expo/vector-icons';
 import Carousel from '../../components/Carousel';
-import menuItems from '../../assets/data/menuitems.json';
+import menuItems from '../../assets/data/testdata.json';
 import imagesData from '../../assets/data/bannerimages.json';
-import { renderMenuItem, MenuItem } from '../../components/MenuItem';
-
+import MenuItemComponent from '../../components/MenuItem';
+import { MenuItem } from '../../components/types';
+import { useCartStore } from '../../components/store/cartStore';
+import CustomizableModal from '../../components/ItemModal';
 
 const { width } = Dimensions.get('window');
-
-const CategoryScene = ({ route }: { route: { key: string } }) => (
-  <FlatList
-    data={menuItems.filter(item => item.category === route.key).map(item => ({ ...item, description: item.description || '' }))}
-    renderItem={renderMenuItem}
-    keyExtractor={item => item.id.toString()}
-    contentContainerStyle={styles.menuList}
-  />
-);
 
 export default function MenuScreen() {
   const [index, setIndex] = useState(0);
@@ -37,6 +30,30 @@ export default function MenuScreen() {
     { key: 'Side Orders', title: 'Side Orders' },
     { key: 'Addons', title: 'Addons' },
   ]);
+
+  const [customizeModalVisible, setCustomizeModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const { items, total } = useCartStore();
+  const router = useRouter();
+
+  const handleOpenCustomizeModal = (item: MenuItem) => {
+    setSelectedItem(item);
+    setCustomizeModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setCustomizeModalVisible(false);
+    setSelectedItem(null);
+  };
+
+  const CategoryScene = ({ route }: { route: { key: string } }) => (
+    <FlatList
+      data={menuItems.filter(item => item.category === route.key).map(item => ({ ...item, description: item.description || '' }))}
+      renderItem={({ item }) => <MenuItemComponent item={item} onOpenCustomizeModal={handleOpenCustomizeModal} />}
+      keyExtractor={item => item.id.toString()}
+      contentContainerStyle={styles.menuList}
+    />
+  );
 
   const renderScene = SceneMap({
     'Bhook Ka The End!': CategoryScene,
@@ -82,7 +99,6 @@ export default function MenuScreen() {
           </View>
         </View>
         <View style={styles.headerIcons}>
-
           <Link href='/search' asChild>
             <TouchableOpacity style={styles.iconButton}>
               <Ionicons name="search" size={24} color="black" />
@@ -116,6 +132,21 @@ export default function MenuScreen() {
         swipeEnabled={true}
         lazy={true}
         lazyPreloadDistance={1}
+      />
+
+      {items.length > 0 && (
+        <Pressable style={styles.cartBar} onPress={() => router.push('/cart')}>
+          <Text style={styles.cartText}>
+            {items.length} item{items.length !== 1 ? 's' : ''} • Rs. {total.toFixed(2)}
+          </Text>
+          <Text style={styles.viewCart}>View Cart</Text>
+        </Pressable>
+      )}
+
+      <CustomizableModal
+        visible={customizeModalVisible}
+        item={selectedItem}
+        onClose={handleCloseModal}
       />
     </SafeAreaView>
   );
@@ -163,10 +194,6 @@ const styles = StyleSheet.create({
   bannerContainer: {
     backgroundColor: '#fff',
   },
-  bannerImage: {
-    width: '100%',
-    height: '100%',
-  },
   tabBar: {
     backgroundColor: '#fff',
     elevation: 0,
@@ -188,75 +215,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#D32F2F',
     height: 3,
   },
-  menuDiv: {
-    marginBottom: 12,
-  }
-  ,
   menuList: {
     padding: 12,
-  },
-  menuItem: {
-    flexDirection: 'row',
-    padding: 12,
-    marginBottom: 12,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  itemImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
-    marginRight: 16,
-  },
-  itemContent: {
-    flex: 1,
-  },
-  itemName: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginBottom: 4,
-  },
-  itemDescription: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 8,
-  },
-  customization: {
-    fontSize: 14,
-    color: '#FFA000',
-    marginBottom: 8,
-  },
-  itemPrice: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#D32F2F',
-    marginBottom: 8,
-  },
-  itemActions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  addButton: {
-    backgroundColor: '#D32F2F',
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    borderRadius: 20,
-  },
-  addButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
   },
   tabBarContentContainer: {
     alignItems: 'center',
   },
+  cartBar: {
+    backgroundColor: '#FFD700',
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  cartText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  viewCart: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#666',
+  },
 });
+

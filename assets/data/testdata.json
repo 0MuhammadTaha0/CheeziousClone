@@ -1,0 +1,77 @@
+[
+    {
+      "id": 1,
+      "name": "Chicken Fajita",
+      "customizable": [
+        {
+          "title": "Size",
+          "required": true,
+          "options": [
+            { "name": "Small", "price": 800 },
+            { "name": "Medium", "price": 1200 },
+            { "name": "Large", "price": 1600 }
+          ]
+        },
+        {
+          "title": "Crust",
+          "required": true,
+          "options": [
+            { "name": "Thin" },
+            { "name": "Thick" },
+            { "name": "Stuffed" }
+          ]
+        },
+        {
+          "title": "Extra Toppings",
+          "required": false,
+          "options": [
+            { "name": "Mushrooms", "price": 50 },
+            { "name": "Olives", "price": 50 },
+            { "name": "Extra Cheese", "price": 100 }
+          ]
+        }
+      ],
+      "description": "An Authentic Taste of Fajita Marinated Chicken Onion and Bell Peppers. Customizations available.",
+      "price": "Rs. 690.00",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuAcU79M8t3n90y5byY9-XlUsYrckuWgMqrA&s",
+      "category": "Somewhat Local"
+    },
+    {
+      "id": 2,
+      "name": "Chicken Tikka",
+      "customizable": [
+        {
+          "title": "Size",
+          "required": true,
+          "options": [
+            { "name": "Small", "price": 800 },
+            { "name": "Medium", "price": 1200 },
+            { "name": "Large", "price": 1600 }
+          ]
+        },
+        {
+          "title": "Crust",
+          "required": true,
+          "options": [
+            { "name": "Thin" },
+            { "name": "Thick" },
+            { "name": "Stuffed" }
+          ]
+        },
+        {
+          "title": "Extra Toppings",
+          "required": false,
+          "options": [
+            { "name": "Mushrooms", "price": 50 },
+            { "name": "Olives", "price": 50 },
+            { "name": "Extra Cheese", "price": 100 }
+          ]
+        }
+      ],
+      "description": "An Authentic Taste of Fajita Marinated Chicken Onion and Bell Peppers. Customizations available.",
+      "price": "Rs. 690.00",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuAcU79M8t3n90y5byY9-XlUsYrckuWgMqrA&s",
+      "category": "Pizza Deals"
+    }
+  ]
+  
