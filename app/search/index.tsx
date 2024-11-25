@@ -7,13 +7,31 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
-import { router } from 'expo-router';
+import { router, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { renderMenuItem } from '../../components/MenuItem';
-import FOOD_ITEMS from '../../assets/data/menuitems.json'
+import MenuItemComponent from '../../components/MenuItem';
+import FOOD_ITEMS from '../../assets/data/testdata.json'
+import { useCartStore } from '../../components/store/cartStore';
+import { MenuItem } from '../../components/types';
+import CustomizableModal from '../../components/ItemModal';
 
 export default function SearchScreen() {
+  const [customizeModalVisible, setCustomizeModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const { items, total } = useCartStore();
+  const router = useRouter();
+
+  const handleOpenCustomizeModal = (item: MenuItem) => {
+    setSelectedItem(item);
+    setCustomizeModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setCustomizeModalVisible(false);
+    setSelectedItem(null);
+  };
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState(FOOD_ITEMS);
 
@@ -57,11 +75,26 @@ export default function SearchScreen() {
       ) : (
         <FlatList
           data={searchResults}
-          renderItem={renderMenuItem}
+          renderItem={({ item }) => <MenuItemComponent item={item} onOpenCustomizeModal={handleOpenCustomizeModal} />}
           keyExtractor={item => item.id.toString()}
           contentContainerStyle={styles.listContainer}
         />
       )}
+
+      {items.length > 0 && (
+        <Pressable style={styles.cartBar} onPress={() => router.push('/cart')}>
+          <Text style={styles.cartText}>
+            {items.length} item{items.length !== 1 ? 's' : ''} • Rs. {total.toFixed(2)}
+          </Text>
+          <Text style={styles.viewCart}>View Cart</Text>
+        </Pressable>
+      )}
+
+      <CustomizableModal
+        visible={customizeModalVisible}
+        item={selectedItem}
+        onClose={handleCloseModal}
+      />
     </SafeAreaView>
   );
 }
@@ -169,5 +202,21 @@ const styles = StyleSheet.create({
   },
   favoriteButton: {
     padding: 8,
+  },
+  cartBar: {
+    backgroundColor: '#FFD700',
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  cartText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  viewCart: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#666',
   },
 });
