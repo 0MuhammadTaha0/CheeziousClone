@@ -12,7 +12,7 @@ import {
 import { router, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import MenuItemComponent from '../../components/MenuItem';
-import FOOD_ITEMS from '../../assets/data/testdata.json'
+import FOOD_ITEMS from '../../assets/data/menu-items.json';
 import { useCartStore } from '../../components/store/cartStore';
 import { MenuItem } from '../../components/types';
 import CustomizableModal from '../../components/ItemModal';

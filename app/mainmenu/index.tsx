@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity, SafeAre
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Ionicons } from '@expo/vector-icons';
 import Carousel from '../../components/Carousel';
-import menuItems from '../../assets/data/testdata.json';
+import menuItems from '../../assets/data/menu-items.json';
 import imagesData from '../../assets/data/bannerimages.json';
 import MenuItemComponent from '../../components/MenuItem';
 import { MenuItem } from '../../components/types';

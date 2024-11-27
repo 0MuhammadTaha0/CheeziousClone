@@ -107,9 +107,7 @@
         { "name": "Large", "price": 1850 },
         { "name": "Party", "price": 3000 }
       ]
-    },
-    
-    
+    }
   ],
   "description": "Tender Chuncks of Marinated Grilled Chicken with Savory Onion.",
   "price": "from Rs. 690.00",
@@ -815,8 +813,7 @@
         { "name": "Large", "price": 2050 },
         { "name": "Party", "price": 3200 }
       ]
-    },
-    
+    }
       ],
   "description": "Royal Crown Crust Cheezious Pizza with A Yummy Blend of Grilled Chicken, Olives, Onion, Capsicum and Special Sauce.",
   "price": "from Rs. 1550.00",
