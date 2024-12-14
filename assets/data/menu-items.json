@@ -21,7 +21,6 @@
   {
     "id": 2,
     "name": "Cheezy Sticks",
-    "customizable": false,
     "description": "Freshly Baked Bread Filled With The Yummiest Cheese Blend To Satisfy Your Cravings.",
     "price": "  Rs. 630.00",
     "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Cheezy-Sticks.jpeg",
@@ -66,7 +65,6 @@
 {
   "id": 5,
   "name": "Calzone Chunks",
-  "customizable": false,
   "description": "4 Pcs Stuffed Calzone Chunks Served with Sauce & Fries.",
   "price": "  Rs. 1150.00",
   "image": "https://pkgiftshop.com/user_files/product_images/1670528354-lVOlVg.jpeg",
@@ -76,7 +74,6 @@
 {
   "id": 6,
   "name": "Arabic Rolls",
-  "customizable": false,
   "description": "4 Pcs Arabic Rolls Stuffed with Yummiest Mix Served with Sauce.",
   "price": "  Rs. 690.00",
   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHWfKRo4koaqiPkgeE1N-e8m6I26oTVR-5fw&s",
@@ -85,9 +82,8 @@
 },
 
 {
-  "id": 7,
+  "id": 49,
   "name": "Behari Rolls",
-  "customizable": false,
   "description": "Nachos Topped With Cheezy Sauce.",
   "price": "  Rs. 690.00",
   "image": "https://thecheeziousmenu.com/wp-content/uploads/2024/05/behari_rolls-removebg-preview-1.webp",
@@ -1144,6 +1140,7 @@
     }
 
   ],
+  "description": " ",
   "price": "from Rs. 300.00",
   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReRl3bZpZnJaA8hiqriXkH_D0AvBgxZElq2Q&s",
   "category": "Side Orders"
@@ -1196,13 +1193,13 @@
 },
 
 {
-        "id": 48,
-        "name": "Water Bottle",
-        "description": " ",
-        "price": "  Rs. 60.00",
-        "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Water.jpeg",
-        "category": "Addons"
-    }
+    "id": 48,
+    "name": "Water Bottle",
+    "description": " ",
+    "price": "  Rs. 60.00",
+    "image": "https://cheeziouspizza.com/wp-content/uploads/2023/10/Water.jpeg",
+    "category": "Addons"
+}
 
 
 

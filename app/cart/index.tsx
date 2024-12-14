@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Image, TouchableOpacity } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { useCartStore } from '../../components/store/cartStore';
@@ -7,9 +7,11 @@ export default function Cart() {
   const { items, total, updateQuantity, removeFromCart, clearCart } = useCartStore();
   const router = useRouter();
 
-  if (items.length === 0) {
-    router.back();
-  }
+  useEffect(() => {
+    if (items.length === 0) {
+      router.back();
+    }
+  }, [items, router]);
 
   return (
     <View style={styles.container}>

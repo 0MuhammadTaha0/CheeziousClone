@@ -8,8 +8,9 @@ const SplashScreen: React.FC = () => {
   useEffect(() => {
     // Automatically navigate to the signup-login screen after 3 seconds
     const timer = setTimeout(() => {
-      router.push('../../signup-login');
-    }, 3000);
+      router.push('/mainmenu');
+      // router.push('/signup-login');
+    }, 3);
 
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, [router]);

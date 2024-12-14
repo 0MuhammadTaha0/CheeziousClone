@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from 'react-native';
-import { router, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import MenuItemComponent from '../../components/MenuItem';
 import FOOD_ITEMS from '../../assets/data/menu-items.json';
