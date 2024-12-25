@@ -11,7 +11,7 @@ export default function Cart() {
     if (items.length === 0) {
       router.back();
     }
-  }, [items, router]);
+  }, [items]);
 
   return (
     <View style={styles.container}>
@@ -57,8 +57,7 @@ export default function Cart() {
         <TouchableOpacity 
           style={styles.checkoutButton} 
           onPress={() => {
-            clearCart();
-            router.push("./thankyouscreen")
+            router.replace("./thankyouscreen")
           }}
         >
           <Text style={styles.checkoutButtonText}>Proceed to Checkout</Text>

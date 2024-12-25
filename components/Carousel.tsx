@@ -6,7 +6,6 @@ import {
   Image,
   Dimensions,
   Animated,
-  TouchableOpacity,
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window'); // Full screen width and height
@@ -45,51 +44,61 @@ const Carousel: React.FC<CarouselProps> = ({ data, autoplayInterval = 3000 }) =>
 
   return (
     <View style={styles.container}>
-      {/* Image Carousel */}
-      <FlatList
-        ref={flatListRef}
-        data={data}
-        keyExtractor={(_, index) => index.toString()}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        onMomentumScrollEnd={handleManualSwipe}
-        renderItem={({ item }) => (
-          <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: item.url }}
-              style={styles.image}
-              resizeMode="cover" // Use "cover" for better fitting
-            />
+      {data.length === 0 ? (
+        <View style={styles.imageContainer}>
+          <Image
+            source={{ uri: 'https://example.com/loading-image.png' }}
+            style={styles.image}
+            resizeMode="cover"
+          />
+        </View>
+      ) : (
+        <>
+          <FlatList
+            ref={flatListRef}
+            data={data}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+              { useNativeDriver: false }
+            )}
+            onMomentumScrollEnd={handleManualSwipe}
+            renderItem={({ item }) => (
+              <View style={styles.imageContainer}>
+                <Image
+                  source={{ uri: item.url }}
+                  style={styles.image}
+                  resizeMode="cover" // Use "cover" for better fitting
+                />
+              </View>
+            )}
+          />
+
+          <View style={styles.dotContainer}>
+            {data.map((_, index) => {
+              const dotScale = scrollX.interpolate({
+                inputRange: [
+                  width * (index - 1),
+                  width * index,
+                  width * (index + 1),
+                ],
+                outputRange: [0.8, 1.2, 0.8],
+                extrapolate: 'clamp',
+              });
+
+              return (
+                <Animated.View
+                  key={index.toString()}
+                  style={[styles.dot, { transform: [{ scale: dotScale }] }]}
+                />
+              );
+            })}
           </View>
-        )}
-      />
-
-      {/* Dots Navigation */}
-      <View style={styles.dotContainer}>
-        {data.map((_, index) => {
-          const dotScale = scrollX.interpolate({
-            inputRange: [
-              width * (index - 1),
-              width * index,
-              width * (index + 1),
-            ],
-            outputRange: [0.8, 1.2, 0.8],
-            extrapolate: 'clamp',
-          });
-
-          return (
-            <Animated.View
-              key={index.toString()}
-              style={[styles.dot, { transform: [{ scale: dotScale }] }]}
-            />
-          );
-        })}
-      </View>
+        </>
+      )}
     </View>
   );
 };

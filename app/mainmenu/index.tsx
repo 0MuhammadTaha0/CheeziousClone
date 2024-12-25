@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { Link, Stack, useRouter } from 'expo-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useRouter } from 'expo-router';
 import { View, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity, SafeAreaView, StatusBar, ScrollView, Image, Pressable } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Ionicons } from '@expo/vector-icons';
 import Carousel from '../../components/Carousel';
-import menuItems from '../../assets/data/menu-items.json';
-import imagesData from '../../assets/data/bannerimages.json';
 import MenuItemComponent from '../../components/MenuItem';
 import { MenuItem } from '../../components/types';
+import { MenuContext } from '../../contexts/MenuItemsContext';
 import { useCartStore } from '../../components/store/cartStore';
 import CustomizableModal from '../../components/ItemModal';
 
@@ -35,6 +34,7 @@ export default function MenuScreen() {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const { items, total } = useCartStore();
   const router = useRouter();
+  const { menuItems, menuImages, loading, error } = useContext(MenuContext);
 
   const handleOpenCustomizeModal = (item: MenuItem) => {
     setSelectedItem(item);
@@ -120,7 +120,7 @@ export default function MenuScreen() {
       </View>
 
       <View style={styles.bannerContainer}>
-        <Carousel data={imagesData} autoplayInterval={4000} />
+        <Carousel data={menuImages} autoplayInterval={4000} />
       </View>
 
       <TabView

@@ -101,7 +101,7 @@ export default function ProfileScreen() {
               </View>
             </View>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => { router.back(); }}>
             <ChevronDown size={30} color="#000" />
           </TouchableOpacity>
         </View>

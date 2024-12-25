@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useCartStore } from '../../../components/store/cartStore';
+
 
 const ThankYouScreen = () => {
   const router = useRouter();
+  const { items, total, updateQuantity, removeFromCart, clearCart } = useCartStore();
+
+  useEffect(() => {
+      clearCart();
+  }, []);
 
   return (
+
     <View style={styles.container}>
       <Text style={styles.thankYouText}>Thank you for your order!</Text>
       <Text style={styles.message}>We appreciate your business.</Text>
       <TouchableOpacity 
         style={styles.mainMenuButton} 
-        onPress={() => router.replace('/mainmenu')}
+        onPress={() => router.back() }
       >
         <Text style={styles.mainMenuButtonText}>Go Back to Main Menu</Text>
       </TouchableOpacity>

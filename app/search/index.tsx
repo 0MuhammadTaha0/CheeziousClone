@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -12,16 +12,20 @@ import {
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import MenuItemComponent from '../../components/MenuItem';
-import FOOD_ITEMS from '../../assets/data/menu-items.json';
 import { useCartStore } from '../../components/store/cartStore';
 import { MenuItem } from '../../components/types';
 import CustomizableModal from '../../components/ItemModal';
+import { MenuContext } from '../../contexts/MenuItemsContext';
+
+
 
 export default function SearchScreen() {
   const [customizeModalVisible, setCustomizeModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const { items, total } = useCartStore();
   const router = useRouter();
+  const { menuItems, menuImages, loading, error } = useContext(MenuContext);
+  
 
   const handleOpenCustomizeModal = (item: MenuItem) => {
     setSelectedItem(item);
@@ -33,7 +37,7 @@ export default function SearchScreen() {
     setSelectedItem(null);
   };
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState(FOOD_ITEMS);
+  const [searchResults, setSearchResults] = useState(menuItems);
 
   const handleSearch = useCallback((text: string) => {
     setSearchQuery(text);
@@ -42,7 +46,7 @@ export default function SearchScreen() {
       return;
     }
     
-    const filtered = FOOD_ITEMS.filter(item =>
+    const filtered = menuItems.filter(item =>
       item.name.toLowerCase().includes(text.toLowerCase()) ||
       item.description.toLowerCase().includes(text.toLowerCase())
     );
