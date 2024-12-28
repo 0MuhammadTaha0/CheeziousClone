@@ -10,7 +10,6 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import * as FileSystem from 'expo-file-system';
 import {
   ChevronDown,
   ChevronRight,
@@ -23,6 +22,7 @@ import {
   Trash2,
   Wallet,
 } from 'lucide-react-native';
+import { supabase } from '../../lib/supabase';
 
 type MenuItemProps = {
   icon: React.ReactNode;
@@ -32,13 +32,12 @@ type MenuItemProps = {
   danger?: boolean;
 };
 
-interface UserData {
-  profileImage?: string;
-  name: string;
+interface Profile {
+  id: string;
+  full_name: string;
+  avatar_url: string | null;
   phone: string;
 }
-
-const filePath = FileSystem.documentDirectory + 'userData.json';
 
 const MenuItem = ({ icon, title, rightText, onPress, danger }: MenuItemProps) => (
   <TouchableOpacity style={styles.menuItem} onPress={onPress}>
@@ -54,31 +53,126 @@ const MenuItem = ({ icon, title, rightText, onPress, danger }: MenuItemProps) =>
 );
 
 export default function ProfileScreen() {
-  const [profile, setProfile] = useState<UserData | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const fileExists = await FileSystem.getInfoAsync(filePath);
-        if (fileExists.exists) {
-          const fileContent = await FileSystem.readAsStringAsync(filePath);
-          const users = JSON.parse(fileContent);
-          if (Array.isArray(users) && users.length > 0) {
-            setProfile(users[users.length - 1]);
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch profile data:', error);
-      }
-    };
-
-    fetchProfileData();
+    fetchProfile();
   }, []);
 
-  const handleLogout = () => {
-    router.replace('../../signup-login'); 
+  const createProfile = async (userId: string, userData: any) => {
+    try {
+      const { error: insertError } = await supabase
+        .from('profiles')
+        .insert([
+          {
+            id: userId,
+            full_name: userData?.full_name || userData?.user_metadata?.full_name || 'New User',
+            phone: userData?.phone || userData?.user_metadata?.phone || '',
+            avatar_url: userData?.avatar_url || null,
+            updated_at: new Date().toISOString(),
+          },
+        ]);
+
+      if (insertError) throw insertError;
+
+      // Fetch the newly created profile
+      const { data: newProfile, error: fetchError } = await supabase
+        .from('profiles')
+        .select('id, full_name, avatar_url, phone')
+        .eq('id', userId)
+        .single();
+
+      if (fetchError) throw fetchError;
+      return newProfile;
+    } catch (error) {
+      console.error('Error creating profile:', error);
+      throw error;
+    }
   };
+
+  const fetchProfile = async () => {
+    try {
+      setLoading(true);
+      
+      // Get the current user
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      
+      if (userError) {
+        console.error('Error getting user:', userError);
+        router.replace('../../signup-login');
+        return;
+      }
+
+      if (!user) {
+        console.log('No user found, redirecting to login');
+        router.replace('../../signup-login');
+        return;
+      }
+
+      console.log('Fetching profile for user:', user.id);
+
+      // Try to fetch existing profile
+      const { data: existingProfile, error: profileError } = await supabase
+        .from('profiles')
+        .select('id, full_name, avatar_url, phone')
+        .eq('id', user.id)
+        .maybeSingle(); // Use maybeSingle instead of single to handle no rows gracefully
+
+      if (profileError && profileError.code !== 'PGRST116') {
+        throw profileError;
+      }
+
+      // If profile doesn't exist, create it
+      if (!existingProfile) {
+        console.log('Profile not found, creating new profile...');
+        const newProfile = await createProfile(user.id, user);
+        setProfile(newProfile);
+      } else {
+        console.log('Profile found:', existingProfile);
+        setProfile(existingProfile);
+      }
+
+    } catch (error) {
+      console.error('Error in fetchProfile:', error);
+      Alert.alert(
+        'Error',
+        'Failed to load profile. Please try again later.'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      router.replace('../../signup-login');
+    } catch (error) {
+      console.error('Error signing out:', error);
+      Alert.alert('Error', 'Failed to sign out. Please try again.');
+    }
+  };
+
+  const getImageUrl = (avatarUrl: string | null) => {
+    if (!avatarUrl) return 'https://via.placeholder.com/100';
+  
+    // If the URL is already a full URL, return it
+    if (avatarUrl.startsWith('http')) return avatarUrl;
+  
+    // If it's a storage path, construct the full URL
+    return supabase.storage.from('user-images').getPublicUrl(avatarUrl).data.publicUrl;
+  };
+
+  if (loading) {
+    return (
+      <SafeAreaView style={[styles.container, styles.loadingContainer]}>
+        <Text>Loading profile...</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -87,12 +181,15 @@ export default function ProfileScreen() {
           <View style={styles.profileSection}>
             <Image
               source={{
-                uri: profile?.profileImage || 'https://via.placeholder.com/100',
+                uri: getImageUrl(profile?.avatar_url ?? null),
               }}
               style={styles.profileImage}
+              onError={(e) => {
+                console.error('Error loading image:', e.nativeEvent.error);
+              }}
             />
             <View style={styles.profileInfo}>
-              <Text style={styles.name}>{profile?.name || 'Guest'}</Text>
+              <Text style={styles.name}>{profile?.full_name || 'Guest'}</Text>
               <View style={styles.phoneContainer}>
                 <Text style={styles.phone}>{profile?.phone || 'No phone number'}</Text>
                 <TouchableOpacity>
@@ -154,6 +251,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     flexDirection: 'row',
@@ -224,3 +325,4 @@ const styles = StyleSheet.create({
     color: '#D32F2F',
   },
 });
+

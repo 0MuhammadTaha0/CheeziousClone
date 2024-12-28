@@ -1,126 +1,233 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, Image, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
+import { decode } from 'base64-arraybuffer'
+import { supabase } from '../../lib/supabase';
 
 interface UserData {
-  name: string;
   email: string;
-  phone: string;
-  address: string;
   password: string;
-  profileImage?: string | null; 
+  name?: string;
+  phone?: string;
+  address?: string;
 }
-
 
 const SignupLoginScreen: React.FC = () => {
   const [isSignup, setIsSignup] = useState<boolean>(true);
   const [formData, setFormData] = useState<UserData>({
-    name: '',
     email: '',
+    password: '',
+    name: '',
     phone: '',
     address: '',
-    password: '',
   });
-  const [imageUri, setImageUri] = useState<string | null>(null); 
+  const [imageUri, setImageUri] = useState<string | null>(null);
   const router = useRouter();
-
-  const filePath = FileSystem.documentDirectory + 'userData.json';
-
-  useEffect(() => {
-    const initializeUserDataFile = async () => {
-      const fileExists = await FileSystem.getInfoAsync(filePath);
-      if (!fileExists.exists) {
-        await FileSystem.writeAsStringAsync(filePath, JSON.stringify([]));
-      }
-    };
-    initializeUserDataFile();
-  }, []);
-
-  const loadUserData = async (): Promise<UserData[]> => {
-    try {
-      const fileExists = await FileSystem.getInfoAsync(filePath);
-      if (fileExists.exists) {
-        const fileContent = await FileSystem.readAsStringAsync(filePath);
-        const parsedData = JSON.parse(fileContent);
-        if (Array.isArray(parsedData)) {
-          return parsedData;
-        } else {
-          console.warn('Invalid file content, resetting to empty array.');
-          return [];
-        }
-      } else {
-        console.warn('File does not exist, initializing empty data.');
-        return [];
-      }
-    } catch (error) {
-      console.error('Error loading user data:', error);
-      return [];
-    }
-  };
-
-  const saveUserData = async (newUser: UserData): Promise<void> => {
-    try {
-      const existingUsers = await loadUserData(); 
-      const updatedUsers = [...existingUsers, newUser]; 
-      await FileSystem.writeAsStringAsync(filePath, JSON.stringify(updatedUsers, null, 2));
-      console.log('User data saved successfully:', updatedUsers);
-    } catch (error) {
-      console.error('Error saving user data:', error);
-      throw new Error('Failed to save user data.'); 
-    }
-  };
-  
 
   const handleInputChange = (field: keyof UserData, value: string) => {
     setFormData({ ...formData, [field]: value });
   };
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = (): string | null => {
+    if (!validateEmail(formData.email)) {
+      return 'Please enter a valid email address.';
+    }
+    if (formData.password.length < 6) {
+      return 'Password must be at least 6 characters long.';
+    }
+    if (isSignup && !formData.name) {
+      return 'Please enter your name.';
+    }
+    return null;
+  };
+
   const handleSignup = async () => {
+    const validationError = validateForm();
+    if (validationError) {
+      Alert.alert('Validation Error', validationError);
+      return;
+    }
+
     try {
-      const newUser = { ...formData, profileImage: imageUri };
-      await saveUserData(newUser);
-      router.push('../../mainmenu');
-    } catch (error) {
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            full_name: formData.name,
+            phone: formData.phone,
+            address: formData.address,
+          },
+        },
+      });
+
+      if (error) throw error;
+
+      if (data.user) {
+        let avatarUrl: string | null = null;
+        
+        if (imageUri) {
+          console.log('Uploading image...');
+          avatarUrl = await uploadImage(imageUri, data.user.id);
+          console.log('Avatar URL after upload:', avatarUrl);
+        }
+
+        // Create profile immediately after signup
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .insert([{
+            id: data.user.id,
+            full_name: formData.name,
+            avatar_url: avatarUrl,
+            phone: formData.phone,
+            address: formData.address,
+            updated_at: new Date().toISOString(),
+          }])
+          .select()
+          .single();
+
+        if (profileError) {
+          console.error('Error creating profile:', profileError);
+          // Don't throw the error, as the user is already created
+          Alert.alert('Note', 'Account created but profile setup had an issue. You can update your profile later.');
+        }
+
+        Alert.alert(
+          'Signup Successful', 
+          'Please check your email for verification. You can now log in.',
+          [
+            {
+              text: 'OK',
+              onPress: () => setIsSignup(false) // Switch to login view
+            }
+          ]
+        );
+      }
+    } catch (error: any) {
       console.error('Error during signup:', error);
+      Alert.alert('Signup Failed', error.message || 'An unexpected error occurred');
     }
   };
 
   const handleLogin = async () => {
-    try {
-      const existingUsers = await loadUserData();
-      const matchedUser = existingUsers.find(
-        (user) => user.email === formData.email && user.password === formData.password
-      );
+    const validationError = validateForm();
+    if (validationError) {
+      Alert.alert('Validation Error', validationError);
+      return;
+    }
 
-      if (matchedUser) {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) throw error;
+
+      if (data.user) {
         router.push('../../mainmenu');
-      } else {
-        console.error('Invalid email or password.');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error during login:', error);
+      Alert.alert('Login Failed', error.message || 'An unexpected error occurred');
     }
   };
 
-  
   const pickImage = async () => {
     try {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission needed', 'Please grant permission to access your photos.');
+        return;
+      }
+
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
+        aspect: [1, 1],
         quality: 1,
       });
-  
-      if (!result.canceled) { 
-        setImageUri(result.assets[0].uri); 
+
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        setImageUri(result.assets[0].uri);
       }
     } catch (error) {
       console.error('Error picking an image:', error);
+      Alert.alert('Error', 'Failed to pick an image. Please try again.');
     }
   };
-  
+
+  const uploadImage = async (uri: string, userId: string): Promise<string | null> => {
+    try {
+      // Get the binary data of the image
+      const response = await fetch(uri);
+      const blob = await response.blob();
+
+      // Convert to base64 first
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          try {
+            if (typeof reader.result !== 'string') {
+              throw new Error('Failed to convert image to base64');
+            }
+
+            // Remove the data URL prefix to get just the base64 string
+            const base64Data = reader.result.split(',')[1];
+            
+            // Convert base64 to ArrayBuffer
+            const arrayBuffer = decode(base64Data);
+
+            // Generate file path with file extension
+            const fileExt = uri.split('.').pop()?.toLowerCase() || 'jpg';
+            const filePath = `${userId}/avatar.${fileExt}`;
+
+            console.log('Uploading to path:', filePath);
+
+            // Upload to Supabase
+            const { data, error: uploadError } = await supabase.storage
+              .from('user-images')
+              .upload(filePath, arrayBuffer, {
+                contentType: `image/${fileExt}`,
+                upsert: true
+              });
+
+            if (uploadError) {
+              console.error('Upload error:', uploadError);
+              throw uploadError;
+            }
+
+            console.log('Upload successful:', data);
+
+            // Get public URL
+            const { data: { publicUrl } } = supabase.storage
+              .from('user-images')
+              .getPublicUrl(filePath);
+
+            console.log('Public URL:', publicUrl);
+            resolve(publicUrl);
+          } catch (error) {
+            console.error('Error in upload process:', error);
+            reject(error);
+          }
+        };
+        reader.onerror = () => {
+          reject(new Error('Failed to read file'));
+        };
+        reader.readAsDataURL(blob);
+      });
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      Alert.alert('Upload Error', 'Failed to upload image. Please try again.');
+      return null;
+    }
+  };
+
 
   return (
     <View style={styles.container}>
@@ -177,7 +284,7 @@ const SignupLoginScreen: React.FC = () => {
         style={styles.switchText}
         onPress={() => setIsSignup((prev) => !prev)}
       >
-        {isSignup ? 'Already have an account? Log In' : 'Don’t have an account? Sign Up'}
+        {isSignup ? 'Already have an account? Log In' : 'Don\'t have an account? Sign Up'}
       </Text>
     </View>
   );
@@ -228,3 +335,4 @@ const styles = StyleSheet.create({
 });
 
 export default SignupLoginScreen;
+
